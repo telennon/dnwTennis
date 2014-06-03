@@ -29,5 +29,5 @@ Constructed as follows:
 # Copyright and License
 
 Code and documentation copyright 2014 TELennon.Com. 
-Code released under the [MIT license](https://github.com/telennon/dnwTennis/LICENSE.md). 
+Code released under the [MIT license](https://github.com/telennon/dnwTennis/blob/master/LICENSE.md). 
 Docs released under Creative Commons.
