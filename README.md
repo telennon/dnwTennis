@@ -28,4 +28,4 @@ Constructed as follows:
 
 # Copyright and License
 
-Code and documentation copyright 2014 TELennon.Com. Code released under the [MIT license](https://github.com/telennon/dnwTennis/MITLicense.txt). Docs released under Creative Commons.
+Code and documentation copyright 2014 TELennon.Com. Code released under the [MIT license](https://github.com/telennon/dnwTennis/LICENSE). Docs released under Creative Commons.
