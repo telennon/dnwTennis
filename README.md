@@ -1,8 +1,9 @@
 # dnwTennis
 
-dnwTennis is a tennis camp signup application specific to the Decatur Northwest Community.
-This version begins the generalization into a camp signup application available to any 
-camp coordinator and community
+dnwTennis is a sports camp registration application. This application is specific to the 
+Decatur Northwest Community annual tennis camp and will continue to be specific to the 
+peculiarities of that camp. This version begins the generalization into a generalized 
+sports camp registration application available to any camp coordinator and community
 
 # Table of Contents
 
