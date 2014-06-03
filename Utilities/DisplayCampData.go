@@ -3,6 +3,10 @@ package main
 *	Author		TELennon
 *	Created		May 2014
 *
+*	Copyright 2014 - Tom Lennon.  All rights reserved.
+*	Use of this source code is governed by a MIT-style
+*	license that can be found in the LICENSE.md file.
+*	
 *	DisplayCampData.go
 *		SetupRegistrationArchive will install all the registration and camper
 *		records from previous years camps. 2012 - 2014 
