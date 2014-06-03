@@ -1,4 +1,5 @@
 # dnwTennis
+
 dnwTennis is a tennis camp signup application specific to the Decatur Northwest Community.
 This version begins the generalization into a camp signup application available to any 
 camp coordinator and community
@@ -6,9 +7,11 @@ camp coordinator and community
 # Table of Contents
 
 # Contributing
+
 Please contact the author if you wish to contribute to this project.
 
 # Versioning
+
 dnwTennis uses a very simple versioning scheme.
 Releases will be numbered with the following format
 
@@ -19,8 +22,10 @@ Constructed as follows:
 * Bug fixes will trigger a minor version increase, leaving the major version alone
 
 # Creators
+
 ### Tom Lennon
-* [http://github.com/telennon](http"//github.com/telennon)
+* [https://github.com/telennon](https"//github.com/telennon)
 
 # Copyright and License
-Code and documentation copyright 2014 TELennon.Com. Code released under the [http://github.com/telennon/dnwTennis/MITLicense.txt](MIT license). Docs released under Creative Commons.
+
+Code and documentation copyright 2014 TELennon.Com. Code released under the * [http://github.com/telennon/dnwTennis/MITLicense.txt](MIT license). Docs released under Creative Commons.
