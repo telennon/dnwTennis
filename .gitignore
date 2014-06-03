@@ -4,6 +4,7 @@
 *.so
 
 # Folders
+_privatedata
 _obj
 _test
 
