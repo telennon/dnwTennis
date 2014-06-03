@@ -24,8 +24,8 @@ Constructed as follows:
 # Creators
 
 ### Tom Lennon
-* [https://github.com/telennon](https"//github.com/telennon)
+* [GITHub Page](https://github.com/telennon)
 
 # Copyright and License
 
-Code and documentation copyright 2014 TELennon.Com. Code released under the * [http://github.com/telennon/dnwTennis/MITLicense.txt](MIT license). Docs released under Creative Commons.
+Code and documentation copyright 2014 TELennon.Com. Code released under the [MIT license](https://github.com/telennon/dnwTennis/MITLicense.txt). Docs released under Creative Commons.
