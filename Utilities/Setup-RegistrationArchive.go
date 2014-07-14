@@ -23,20 +23,14 @@ import (
 	"strings"
 	"errors"
 	"time"
-	//"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 	"encoding/csv"
-	//"io"
 	"os"
 
 	"github.com/telennon/dnwTennis/dnwcamp"
 )
 
 const (
-	//MongoSrv = "localhost"			// DataBase URL
-	//DB = "CampMaster"					// Database name containing the app registration collection
-	//COL_CONF = "Camps"			// Name of camp configuration collection
-	//COL_REG = "Registrations"	// All camp registrations
 	// Indexes into camper record
 	C_ID = 0
 	C_LOTTERYNUM = 1
@@ -64,56 +58,49 @@ type campFiles struct {
 	camperFields int
 }
 
-func main() {
-
+func createRegistrationsArchive() (error) {
+	gopath := os.Getenv("GOPATH")
 	camperDataArchive := []campFiles {
 		{
 			style: 1,
 			year: "2012",
-			payorcombinedfile: "/Users/tom/gocode/src/github.com/telennon/dnwtennis/_dataImport/2012TennisCamp1.csv",
+			payorcombinedfile: gopath + "/src/github.com/telennon/dnwtennis/_dataImport/2012TennisCamp1.csv",
 			payorFields: 8,
 			camperfile: "",
 			camperFields: 0},
 		{
 			style: 2,
 			year: "2013",
-			payorcombinedfile: "/Users/tom/gocode/src/github.com/telennon/dnwtennis/_dataImport/payors2013.csv",
+			payorcombinedfile: gopath + "/src/github.com/telennon/dnwtennis/_dataImport/payors2013.csv",
 			payorFields: 10,
-			camperfile: "/Users/tom/gocode/src/github.com/telennon/dnwtennis/_dataImport/campers2013.csv",
+			camperfile: gopath + "/src/github.com/telennon/dnwtennis/_dataImport/campers2013.csv",
 			camperFields: 11},
 		{
 			style: 2,
 			year: "2014",
-			payorcombinedfile: "/Users/tom/gocode/src/github.com/telennon/dnwtennis/_dataImport/payors2014.csv",
+			payorcombinedfile: gopath + "/src/github.com/telennon/dnwtennis/_dataImport/payors2014.csv",
 			payorFields: 10,
-			camperfile: "/Users/tom/gocode/src/github.com/telennon/dnwtennis/_dataImport/campers2014.csv",
+			camperfile: gopath + "/src/github.com/telennon/dnwtennis/_dataImport/campers2014.csv",
 			camperFields: 11},		
 	}
-
-	// Drop any existing collection
-	err := dnwcamp.DeleteRegistrationCollection
-	if err != nil {
-		fmt.Println("Attempt to delete the collection", dnwcamp.COL_REG, "returned the following error ..", err)
-		// TODO - Add some code to check for the existance of the collection before attempting to drop it
-	}
-
 
 	for i := 0; i < len(camperDataArchive); i++ {
 		switch {
 		case camperDataArchive[i].style == 1:
 			err := importStyle1Archive(camperDataArchive[i])
 			if err != nil {
-				fmt.Println("Error importing archive from", camperDataArchive[i].year)
+				return errors.New("Error importing archive from " + camperDataArchive[i].year)
 			}
 		case camperDataArchive[i].style == 2:
 			err := importStyle2Archive(camperDataArchive[i])
 			if err != nil {
-				fmt.Println("Error importing archive from", camperDataArchive[i].year)
+				return errors.New("Error importing archive from" + camperDataArchive[i].year)
 			}
 		case camperDataArchive[i].style > 2:
-			fmt.Println("Whoa - Some unexpected import style showed up")
+			return errors.New("Whoa - Some unexpected import style showed up")
 		}
 	}
+	return nil
 }
 
 func importStyle2Archive(campArchive campFiles) error {

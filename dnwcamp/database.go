@@ -10,12 +10,12 @@ package dnwcamp
 import (
 	"fmt"
 	"labix.org/v2/mgo"
-	//"labix.org/v2/mgo/bson"
+	"os"
 )
 
 const (
-	MONGODBSERVER = "localhost"			// DataBase URL
-	DATABASE = "CampMaster"					// Database name containing the app registration collection
+	// MONGODBSERVER = "mongodb://dnwUser:dnw0001@ds051459.mongolab.com:51459/campmaster" // Database URL
+	DATABASE = "campmaster"					// Database name containing the app registration collection
 	COL_CAMPS = "Camps"			// Name of camp configuration collection
 	COL_REG = "Registrations"	// All camp registrations
 )
@@ -24,15 +24,19 @@ const (
 
 
 func BuildDBSession() (*mgo.Session, error) {
-	
-	session, err := mgo.Dial(MONGODBSERVER)
+	mongoURI := os.Getenv("MONGOURI")
+	if mongoURI == "" {
+		fmt.Println("Database connection string was not found in the environment - Quitting")
+		os.Exit(12)
+	}
+
+	session, err := mgo.Dial(mongoURI)
 	if err != nil {
-		fmt.Println("Dialing the database presented the following error\n", err)
-		return session, err
+		fmt.Println("Dialing the database presented the following error..", err)
+		os.Exit(10)
 	}
 
 	session.SetMode(mgo.Monotonic, true)
-	
 	return session, nil
 }
 
@@ -84,21 +88,9 @@ func OpenRegistrationCollection() (*mgo.Session, *mgo.Collection, error) {
 func DeleteRegistrationCollection() error {
 	sess, col, err := OpenRegistrationCollection()
 	if err == nil {
+		// TODO Add some code here to check that the collection exists prior to dropping
 		err = col.DropCollection()
 	}
 	sess.Close()
 	return err
 }
-
-	// Setup the database connection
-	//sess, err := dnwcamp.BuildDBSession()
-	//if err != nil {
-	//	return 											// No database then just give up
-	//}
-	//col := dnwcamp.ConnectCollection(sess, dnwcamp.DATABASE, dnwcamp.COL_CAMPS)
-	//defer sess.Close()
-
-	//err = sess.DB(dnwcamp.DATABASE).DropDatabase()
-	//if err != nil {
-	//	fmt.Println("Failed to delete the database with error ..", err)
-	//}

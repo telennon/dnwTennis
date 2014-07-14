@@ -22,8 +22,6 @@ import (
 	"sort"
 
 	"code.google.com/p/gofpdf"
-	//"labix.org/v2/mgo"
-	//"labix.org/v2/mgo/bson"
 	"github.com/telennon/dnwTennis/dnwcamp"
 )
 

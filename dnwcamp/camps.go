@@ -4,27 +4,22 @@ package dnwcamp
 // license that can be found in the LICENSE file.
 //
 // This package manages the concept of a camp.
-// I may decide to merge camp and sections packages as they are linked, a section
-// must be connected to a camp to make sense and a camp with no sections is nonsensicle as well
 //
 // Original created April 2014
 
 
 import (
-	//"fmt"
 	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 )
 
-
-
 type Camp struct {
 	ID 					bson.ObjectId	`bson:"_id,omitempty"`
 	Title 				string			"Title"				// Generic name for camp
-	Active				bool 			"Active"			// Flips to no when camp is past signup dates
+	Active				bool 			"Active"			// True: Camp will show up in lists; False: Camp does not show up 
 	Cost				int64 			"Cost"				// Base cost of camp - Applies to all sections
-	RegStart			string			"RegStart"			// DateTime signup can begin
-	RegEnd				string 			"RegEnd"			// DateTime signup can end
+	RegStart			string			"RegStart"			// DateTime signup begins
+	RegEnd				string 			"RegEnd"			// DateTime signup ends
 	RefundDeadline 		string			"RefundDeadline"	// Last date to cancel and get a refund
 	CamperTypes			[]string 		"CamperTypes"		// Classes of campers - For DNW - Homeowner / Guest
 	Sections			[]Section 		"Sections"			// Array of sections for this camp
@@ -39,17 +34,22 @@ type Section struct {
 	// ToDo -- Add a section registration limit
 }
 
-// NewCamp creates a new camp structure.
+// NewCamp returns a new camp structure.
 func NewCamp() (*Camp) {
 	return &Camp{bson.NewObjectId(), "", false, 0.00, "", "", "", nil, nil}
 }
 
+// AddSection adds a new camp section to this camp
 func (s *Camp) AddSection() error {
 
 	s.Sections = append(s.Sections, *NewCampSection())
 	return nil
 }
+func NewCampSection() (*Section) {
+	return &Section{bson.NewObjectId(), "", "", "", 0}
+}
 
+// Save - Saves changes made to a camp
 func (s *Camp) Save() error {
 	sess, col, err := OpenCampCollection()
 	defer sess.Close()
@@ -59,12 +59,7 @@ func (s *Camp) Save() error {
 	return err
 }
 
-
-
-func NewCampSection() (*Section) {
-	return &Section{bson.NewObjectId(), "", "", "", 0}
-}
-
+// ListCamps - returns a slice containing all camp documents
 func ListCamps() ([]Camp, error) {
 	// Setup Access to the database
 	sess, col, err := OpenCampCollection()
@@ -77,6 +72,7 @@ func ListCamps() ([]Camp, error) {
 	return theCamps, err
 }
 
+// CreateCampIndex - Is a setup function called to create the index set required on the camps collection
 func CreateCampIndex() error {
 
 	index := mgo.Index{

@@ -21,32 +21,13 @@ package main
 ************************************************************************* */
 import (
 	"fmt"
-	//"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 
-	"github.com/telennon/dnwtennis/dnwcamp"
+	"github.com/telennon/dnwTennis/dnwcamp"
 )
 
-const (
-	//MongoSrv = "localhost"			// DataBase URL
-	//DB = "CampMaster"					// Database name containing the app registration collection
-	//COL_CAMPS = "Camps"			// Name of camp configuration collection
-	//COL_REG = "CampRegistrations"	// All camp registrations
-	// Indexes into camper 
-	//C_ID = 0
-	//C_LOTTERYNUM = 1
-	//C_NAME = 2
-	//C_AGE = 3
-	//C_TSHIRT = 4
-	//C_HOMEOWNER = 5
-	//C_CAMPS = 6
-	//C_WAITLISTS = 7
-	//C_PHPTIMESTAMP = 8
-	//C_ORGCOMMENTS = 9
-	//C_YEAR = 10
-)
 
-func main() {
+func createCampsArchive() (error) {
 	// Past Camp Configuration Data
 	//		This data is created manually for all past camps for which there is data.
 	// Todo:
@@ -133,12 +114,6 @@ func main() {
 		},
 	}
 
-	// Delete the entire Database
-	err := dnwcamp.DeleteDNWTennisDB()
-	if err != nil {
-		fmt.Println("Error occured trying to delete the DNWTennis Database\n", err)
-	}
-
 	// Create camp documents
 	for i := 0; i < len(pastcamps); i++ {
 		aCamp := dnwcamp.NewCamp()
@@ -156,14 +131,17 @@ func main() {
 			aCamp.Sections[y].End = pastcamps[i].Sections[y].End
 			aCamp.Sections[y].CostDifferential = pastcamps[i].Sections[y].CostDifferential
 		}
-		aCamp.Save()
+		err := aCamp.Save()
+		if err != nil {
+			fmt.Println("Error - Creating camp ", pastcamps[i].Title, "\n", err)
+			return err
+		}
 	}
 
-	err = dnwcamp.CreateCampIndex()
+	err := dnwcamp.CreateCampIndex()
 	if err != nil {
-		fmt.Println("Error occured while creating the camp indexes\n", err)
+		fmt.Println("Error - Creating camp indexes\n", err)
 	}
+
+	return err
 }
-
-	
-

@@ -9,7 +9,6 @@ package dnwcamp
 import (
 	"fmt"
 	"strconv"
-	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 )
 
@@ -69,14 +68,11 @@ func NewRequest(s bson.ObjectId, p int64) (Request) {
 
 func ListRegistrations() ([]Registration, error) {
 	// Setup Access to the database
-	session, err := mgo.Dial(MONGODBSERVER)
+	session, dbCollection, err := OpenRegistrationCollection()
 	if err != nil {
-		fmt.Println("Dialing the database presented the following error\n", err)
+		fmt.Println("Error connecting to registration database\n", err)
 		return nil, err
 	}
-
-	session.SetMode(mgo.Monotonic, true)
-	dbCollection := session.DB(DATABASE).C(COL_REG)
 
 	defer session.Close()
 
@@ -101,15 +97,11 @@ func (r Registration)Save() (error) {
 func ListReservationsForCamp(campID bson.ObjectId) ([]Registration, error) {
 	q := bson.M{"campId": campID}
 
-		session, err := mgo.Dial(MONGODBSERVER)
+	session, dbCollection, err := OpenRegistrationCollection()
 	if err != nil {
-		fmt.Println("Dialing the database presented the following error\n", err)
+		fmt.Println("Error connecting to registration database\n", err)
 		return nil, err
 	}
-
-	session.SetMode(mgo.Monotonic, true)
-	dbCollection := session.DB(DATABASE).C(COL_REG)
-
 	defer session.Close()
 
 	var theRegistrations []Registration
