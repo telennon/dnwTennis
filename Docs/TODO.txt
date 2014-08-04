@@ -1,17 +1,32 @@
 dnwTennis TODO													Added			Completed
 
 General -----------------------------------------------------------------------------------
-	port existing function to GO							2014-06-01
+	port existing code to GO								2014-06-01
 	port existing sql to MongoDB							2014-05-01			2014-06-01
+	Setup hosting in new location							2014-08-01
 
 
 Registration Page -------------------------------------------------------------------------
-
+	User login ability to edit own resgistration			2014-08-01
+	Prompt user to submit if they leave page before 
+		submitting											2014-08-01
+	Log abandoned registration sessions						2014-08-01
 
 Confirmation Page and Email ---------------------------------------------------------------
 
 
 Management Pages --------------------------------------------------------------------------
-
+	Logins and ACL's for pro, Property Manager,
+		camp coordinator									2014-08-01
+	Create classes in camp sections							2014-08-01
+	Assign campers to classes								2014-08-01
+	Integrate classes into the UI							2014-08-01
+	Search for camper or Registration 						2014-08-01
+	Email campers and registrations connected to search		2014-08-01
 
 Managers Report ---------------------------------------------------------------------------
+	Print report by camper 									2014-08-01
+
+Camp Setup Application --------------------------------------------------------------------
+	Allow camp coord to setup a new Camp 					2014-08-01
+	Add/remove/edit camp sections							2014-08-01
