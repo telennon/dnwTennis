@@ -467,6 +467,9 @@ func findTheCamp(yr, sec string) (bson.ObjectId, bson.ObjectId, error) {
 //}
 
 func readCSV(fName string, fCount int) ([][]string, error) {
+	fmt.Println("Reading ... ", fName)
+	_, err := fmt.Printf("With %d Columns", fCount)
+	fmt.Println("")
 	cFile, err := os.Open(fName)
 	if err != nil {
 		fmt.Println("Error opening file ", fName, " with error ", err)
