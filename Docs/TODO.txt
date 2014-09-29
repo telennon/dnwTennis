@@ -6,13 +6,27 @@ General ------------------------------------------------------------------------
 	Setup hosting in new location							2014-08-01
 
 
-Registration Page -------------------------------------------------------------------------
-	User login ability to edit own resgistration			2014-08-01
+Registration Creation Page -----------------------------------------------------------------
+	Registration URL - Allows user to edit their own
+		registrations										2014-08-01
 	Prompt user to submit if they leave page before 
 		submitting											2014-08-01
 	Log abandoned registration sessions						2014-08-01
+	Add camper email addresses to registrations				2014-09-27
+	Add Registration edit end date							2014-09-27
 
-Confirmation Page and Email ---------------------------------------------------------------
+Registration Edit Page ---------------------------------------------------------------------
+	Build the page - This is the same as the create 
+		page except you get to it by clicking the 
+		confirmation URL 									2014-09-27
+	Page to refer users to camp coordinator					2014-09-27
+	Page to indicate camps are done and they will hear
+		when following year camp opens up					2014-09-27
+
+Confirmation Page and Email ----------------------------------------------------------------
+	Pretty format the confirmation Email 					2014-09-27
+	Add confirmation URL and indication user can click
+		to edit												2014-09-27
 
 
 Management Pages --------------------------------------------------------------------------
