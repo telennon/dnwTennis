@@ -7,11 +7,12 @@ General ------------------------------------------------------------------------
 
 
 Registration Creation Page -----------------------------------------------------------------
+	Port to Go / MongoDB									2014-09-27
 	Registration URL - Allows user to edit their own
-		registrations										2014-08-01
+		registrations										2014-09-27
 	Prompt user to submit if they leave page before 
-		submitting											2014-08-01
-	Log abandoned registration sessions						2014-08-01
+		submitting											2014-09-27
+	Log abandoned registration sessions						2014-09-27
 	Add camper email addresses to registrations				2014-09-27
 	Add Registration edit end date							2014-09-27
 
