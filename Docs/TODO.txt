@@ -44,4 +44,4 @@ Managers Report ----------------------------------------------------------------
 
 Camp Setup Application --------------------------------------------------------------------
 	Allow camp coord to setup a new Camp 					2014-08-01
-	Add/remove/edit camp sections							2014-08-01
+	Add/remove/edit camp sessions							2014-08-01
