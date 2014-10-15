@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Decatur Northwest Tennis Lottery Signup">
+    <meta name="author" content="Tom Lennon">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+
+    <title>DNW Tennis</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+    <!--<link rel="stylesheet" href="css/app.css"/> -->
+</head>
+
+<body>
+<div class="container theme-showcase" role="main">
+    <div class="page-header">
+      <h1>DNW Tennis Camp<small>2014 Camp Information</small></h1>
+    </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-md-5">
+            <dl class="dl-horizontal">
+                <dt>2014 Camp Dates</dt>
+                <dd>&nbsp</dd>
+                {{ range $element := .CampRecord.Sections }}
+                  <dt>{{ $element.Name }}</dt>
+                  <dd>{{ $element.Start }} - {{ $element.End }}</dd>
+                {{ end }}
+            </dl>
+          </div>
+
+          <div class="col-md-3">
+            <dl>
+              <dt>Camp Costs</dt>
+                <dd>${{ .CampRecord.Cost }} per camper</dd>
+              <dt>&nbsp</dt>
+              <dt>&nbsp</dt>
+            </dl>
+          </div>
+
+          <div class="col-md-4">
+           <dl>
+              <dt>Sign Up Deadline</dt>
+                <dd>{{ .CampRecord.RegEnd }}</dd>
+              <dt>&nbsp</dt>
+              <dt>&nbsp</dt>
+            </dl>
+          </div>
+        </div>  <!-- Panel Body -->
+      </div>  
+
+      &nbsp
+      
+        {{ if .PastTime }}
+          <div class="alert alert-warning">
+            <strong>The DNW Tennis Camp lottery has ended.</strong><br />Camps are now being filled on a space available basis. Please complete the signup form. Trish will contact you to advise whether space is available.
+          </div>
+        {{ end }}
+
+        {{ if .NotTimeYet }}
+          <div class="alert alert-warning">
+            <strong>The DNW Tennis Camp lottery opens {{ .CampRecord.RegStart }} </strong><br /> Please come back then to sign up for the lottery
+          </div>
+        {{ end }}
+
+        {{ if .CampOver }}
+          <div class="alert alert-danger">
+            <strong>The 2014 DNW Tennis Camp is over</strong><br /> We will see you all next year for the 2015 DNW Tennis Camp
+          </div>
+        {{ end }}
+
+        {{ if not .CampOver }}
+          <p class="lead">Welcome to the 2014 Decatur Northwest Tennis Camp lottery sign up page. Evan Hundley will be returning this year to offer three tennis camps. Should demand exceed available spots in the camps, DNW family members will be given priority over guests. Each camp is limited to 32 people. The ${{ .CampRecord.Cost }} camp fee will be billed to your DNW account on June 1st . <strong>No refunds for cancellations will be made after {{ .CampRecord.RefundDeadline }} </strong>
+          </p>
+
+          <p class="lead"> A lottery system will be used if more homeowners sign up for a particular camp than places available. <strong>Sign-ups received after {{ .CampRecord.RegEnd }} will not be included in the initial drawing.</strong> Please make sure to indicate your first camp choice and a second choice. Entire families will be signed up before moving on to the next form. Following homeowners, guests will be added in the order that forms were drawn. A wait list for each camp will be created as needed. You will be notified of the results of the drawing on or around May 1st. If you have any difficulties with the online submission or have any questions, feel free to contact me by email or phone. 
+          </p>
+  
+          <div class="row">
+            <div class="col-md-8">
+              <address>
+                <strong>Trish Keegan</strong><br>
+                &nbsp&nbsp&nbsp<a href="mailto:Trish@DNWTennis.com">Trish@DNWTennis.com</a><br>
+                &nbsp&nbsp&nbsp206.406.4709
+              </address>
+            </div>
+    
+            {{ if not .NotTimeYet }}
+              <div class='col-md-4'>
+                <br><p><a href='#/view2' class='btn btn-primary btn-lg' role='button'>Sign Up &raquo;</a></p>
+              </div>
+            {{ end }}
+        {{ end }}
+
+</div>
+
+</body>
+</html>

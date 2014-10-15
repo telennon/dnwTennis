@@ -1,0 +1,47 @@
+DataBase Definitions
+
+dnwTennis v3 utilizes MongoDB a document database so does not have a schema per se. There are however definitions of data
+expected to be in the collections and expectations for what the collections are used for.
+
+Camps
+	Camps is the collection of camps and sections for each camp - This database is created by the camp coordinator using a camp creation page available on the manager's website.
+
+	id: MongoDB assigned ID
+	Title: Frindly name for the camp
+	Active: Indicates if the camp is the current camp or a historical camp. This may be removed in the future as 
+		it might be better to do this with a date rather then a flag that needs to be explicitly set and any
+		autmated setting would rely on a date anyway
+	Cost: The cost of the camp - To internationalize, will need to add a currency type field
+	RegStart - Defines the date and time at which registration begins
+	RegEnd - Defines the date and time at which registration for camp ends
+	RefundDeadline - The date and time at which refunds will no longer be granted. If nil then there is no refund deadline
+	CamperTypes - Used to define the types of campers - For the DNW camps this is Homeowner and Guest but could be
+		anything
+	Sections - A set of documents that define each section of camp
+		id: MongoDB generated ID
+		Name: Friendly name for this section
+		Start: Starting date and time of section
+		End: Ending date and time of section
+		CostDifferential: a positive or negative number to adjust the Cost defined above. This allows different sections to be charged different ammounts.
+
+Registrations
+	id: MongoDB generated ID
+	CampID:	Links back the CampID
+	regName: Typically the last name of the primary contact but can be anything
+	regPhone: Primary contact phone number
+	regSite: For decatur camps, this is a billing thing so the property manager know what site to bill
+	regEmail: Email for the primary contact
+	regTimeStamp: The precise date and time this registration was submitted. Handy for first come first server scearios
+	regComments: Comments the registrant might want to add - we ask for skill levels
+	regRequests: Document containing the preferred sections in priority order
+		reqSectionId: Refers back to the id field in the Sections document
+		reqPriority: meaning 1st, 2nd or 3rd choice
+	regCampers: A collection of documents describing the camp attendees connected to this registration
+		camperName:	Name of this camper
+		camperAge: Age of this camper
+		camperShirtSize: Could be anything here but we use for size
+		camperType: Must be one of the types defined in the CamperTypes document
+		timeStamp: Same as registration time stamp
+		comment: Comment on this specific camper
+		camperSections: A list of sections this camper is signed up for
+		camperWaitListed: A list of sections this camper is waitlisted for.

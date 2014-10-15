@@ -9,21 +9,11 @@ package dnwcamp
 
 
 import (
+	"errors"
+
 	"labix.org/v2/mgo"
 	"labix.org/v2/mgo/bson"
 )
-
-type Camp struct {
-	ID 					bson.ObjectId	`bson:"_id,omitempty"`
-	Title 				string			"Title"				// Generic name for camp
-	Active				bool 			"Active"			// True: Camp will show up in lists; False: Camp does not show up 
-	Cost				int64 			"Cost"				// Base cost of camp - Applies to all sections
-	RegStart			string			"RegStart"			// DateTime signup begins
-	RegEnd				string 			"RegEnd"			// DateTime signup ends
-	RefundDeadline 		string			"RefundDeadline"	// Last date to cancel and get a refund
-	CamperTypes			[]string 		"CamperTypes"		// Classes of campers - For DNW - Homeowner / Guest
-	Sections			[]Section 		"Sections"			// Array of sections for this camp
-}
 
 type Section struct {
 	ID 					bson.ObjectId 	`bson:"Id"`			// ID of this section
@@ -34,9 +24,22 @@ type Section struct {
 	// ToDo -- Add a section registration limit
 }
 
+type Camp struct {
+	ID 					bson.ObjectId	`bson:"_id,omitempty"`
+	Title 				string			"Title"				// Generic name for camp
+	Active				bool 			"Active"			// True: Camp will show up in lists; False: Camp does not show up 
+	Cost				int64 			"Cost"				// Base cost of camp - Applies to all sections
+	RegStart			string			"RegStart"			// DateTime signup begins
+	RegEnd				string 			"RegEnd"			// DateTime signup ends
+	RefundDeadline 		string			"RefundDeadline"	// Last date to cancel and get a refund
+	CampOver			string			"CampOver"			// Date after which no registrations will be taken
+	CamperTypes			[]string 		"CamperTypes"		// Classes of campers - For DNW - Homeowner or Guest
+	Sections			[]Section 		"Sections"			// Array of sections for this camp
+}
+
 // NewCamp returns a new camp structure.
 func NewCamp() (*Camp) {
-	return &Camp{bson.NewObjectId(), "", false, 0.00, "", "", "", nil, nil}
+	return &Camp{bson.NewObjectId(), "", false, 0.00, "", "", "", "", nil, nil}
 }
 
 // AddSection adds a new camp section to this camp
@@ -57,6 +60,30 @@ func (s *Camp) Save() error {
 		err = col.Insert(s)
 	}
 	return err
+}
+
+// ListCurrentCamp - returns only the current camp
+func ListCurrentCamp() (*Camp, error) {
+	// List out all the camps
+	allCamps, err := ListCamps()
+	if err != nil {
+		return NewCamp(), err
+	}
+	
+	currentCamp := -1
+	for i := range allCamps {
+		if allCamps[i].Active {
+			if currentCamp < 0 {
+				currentCamp = i
+			} else {
+				return NewCamp(), errors.New("More than one active camp!")
+			}
+		} 
+	}
+	if currentCamp < 0 {
+		return NewCamp(), errors.New("No current camp found")
+	}
+	return &allCamps[currentCamp], err
 }
 
 // ListCamps - returns a slice containing all camp documents

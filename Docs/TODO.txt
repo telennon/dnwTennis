@@ -23,6 +23,7 @@ Registration Edit Page ---------------------------------------------------------
 	Page to refer users to camp coordinator					2014-09-27
 	Page to indicate camps are done and they will hear
 		when following year camp opens up					2014-09-27
+	Check dates - I think I am mixing local and universal	2014-10-15
 
 Confirmation Page and Email ----------------------------------------------------------------
 	Pretty format the confirmation Email 					2014-09-27
@@ -45,3 +46,10 @@ Managers Report ----------------------------------------------------------------
 Camp Setup Application --------------------------------------------------------------------
 	Allow camp coord to setup a new Camp 					2014-08-01
 	Add/remove/edit camp sessions							2014-08-01
+
+
+dnwcamp package ----------------------------------------------------------------------------
+	camps.go/ListCamps should order sections by start date	2014-10-12
+	create a camp over date in DB 							2014-10-14	2014-10-14
+	Create a display section in welcome page for
+		camp over											2014-10-14	2014-10-14
