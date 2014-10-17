@@ -23,7 +23,7 @@ Registration Edit Page ---------------------------------------------------------
 	Page to refer users to camp coordinator					2014-09-27
 	Page to indicate camps are done and they will hear
 		when following year camp opens up					2014-09-27
-	Check dates - I think I am mixing local and universal	2014-10-15
+	Check dates - I think I am mixing local and UTC			2014-10-15
 
 Confirmation Page and Email ----------------------------------------------------------------
 	Pretty format the confirmation Email 					2014-09-27

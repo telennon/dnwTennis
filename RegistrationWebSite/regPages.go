@@ -33,16 +33,18 @@ type CampDisplay struct {
 
 func main() {
     r := mux.NewRouter()
+    r.PathPrefix("/static/").Handler(http.StripPrefix("/static", http.FileServer(http.Dir("static/"))))
     r.HandleFunc("/", homeHandler)
     r.HandleFunc("/manager", managerHandler)
     r.HandleFunc("/Manager", managerHandler)
     r.HandleFunc("/Mgr", managerHandler)
     r.HandleFunc("/mgr", managerHandler)
     r.HandleFunc("/reg/{id:[0-9]+}", existingRegHandler)
-    http.Handle("/", r)
 
+    http.Handle("/", r)
     http.ListenAndServe(":8080", nil)
 }
+
 
 func homeHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("In the homeHandler")
@@ -103,10 +105,6 @@ func homeHandler(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("Leaving the homeHandler without errors")
 	return
 	
-}
-
-func managerHandler(w http.ResponseWriter, req *http.Request)  {
-	fmt.Println("In the managerHandler")
 }
 
 func existingRegHandler(w http.ResponseWriter, req *http.Request) {

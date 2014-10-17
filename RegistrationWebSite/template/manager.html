@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" ng-app="mgrPages">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Decatur Northwest Tennis Camp Manager Pages">
+    <meta name="author" content="Tom Lennon">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+
+    <title>DNW Tennis Manager Pages</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/trNgGrid.min.css" />
+    
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/trNgGrid.min.js"></script>
+    <script src="/static/js/mgrPages.js"></script>
+
+    <!--<link rel="stylesheet" href="css/app.css"/> -->
+</head>
+
+<body>
+  <div ng-controller="MainCtrl">
+    <div class="container theme-showcase" role="main">
+  
+    <div class="page-header">
+      <h1>DNW Tennis Camp<small>Manager's Pages</small></h1>
+    </div>
+
+    <table tr-ng-grid="" items="myItems"></table> 
+  
+    <div class="row">
+      <div class='col-md-4'>
+        <br><p><a href='#/view2' class='btn btn-primary btn-lg' role='button'>New Camp &raquo;</a></p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
