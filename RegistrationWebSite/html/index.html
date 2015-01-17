@@ -1,0 +1,44 @@
+{{ define header}}
+    <div class="page-header">
+      <h1>{{ .Title }}<small>Camp Information</small></h1>
+    </div>
+{{ end }}
+
+{{ define campinfopanel }}
+	<div class="container theme-showcase" role="main">
+  		<div class="panel panel-default">
+    		<div class="panel-body">
+      			<div class="col-md-5">
+        			<dl class="dl-horizontal">
+          				<dt>Camp Dates</dt>
+          				<dd>&nbsp</dd>
+          				<dt>Camp 1</dt>
+          				<dd>{{ .TBD }}</dd>
+          				<dt>Camp 2</dt>
+          				<dd>{{ .TBD }}</dd>
+          				<dt>Camp 3</dt>
+          				<dd>{{ .TBD }}</dd>
+        			</dl>
+      			</div>
+
+      			<div class="col-md-3">
+        			<dl>
+          				<dt>Camp Costs</dt>
+            			<dd>{{ .TBD }} per camper</dd>
+              			<dt>&nbsp</dt>
+              			<dt>&nbsp</dt>
+        			</dl>
+      			</div>
+
+      			<div class="col-md-4">
+        			<dl>
+          				<dt>Sign Up Deadline</dt>
+            			<dd>{{ .TBD }}</dd>
+          				<dt>&nbsp</dt>
+          				<dt>&nbsp</dt>
+        			</dl>
+      			</div>
+        	</div>  <!-- Panel Body -->
+    	</div>    <!-- Panel -->
+    </div>	<!-- Container -->
+{{ end }}

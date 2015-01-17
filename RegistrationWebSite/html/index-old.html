@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" ng-app="dnwTennisApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Decatur Northwest Tennis Lottery Signup">
+    <meta name="author" content="Tom Lennon">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+
+    <title> {{ .Title }} </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/theme.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+
+<body ng-controller="mainController">
+<div class="container theme-showcase" role="main">
+
+    <div class="page-header">
+      <h1>{{ .Title }}<small>Camp Information</small></h1>
+    </div>
+
+
+</div>
+
+<div class="container theme-showcase" role="main">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="col-md-5">
+        <dl class="dl-horizontal">
+          <dt>Camp Dates</dt>
+          <dd>&nbsp</dd>
+          <dt>Camp 1</dt>
+          <dd>{{ .TBD }}</dd>
+          <dt>Camp 2</dt>
+          <dd>{{ .TBD }}</dd>
+          <dt>Camp 3</dt>
+          <dd>{{ .TBD }}</dd>
+        </dl>
+      </div>
+
+      <div class="col-md-3">
+        <dl>
+          <dt>Camp Costs</dt>
+            <dd>{{ .TBD }} per camper</dd>
+              <dt>&nbsp</dt>
+              <dt>&nbsp</dt>
+        </dl>
+      </div>
+
+      <div class="col-md-4">
+        <dl>
+          <dt>Sign Up Deadline</dt>
+            <dd>{{ .TBD }}</dd>
+          <dt>&nbsp</dt>
+          <dt>&nbsp</dt>
+        </dl>
+      </div>
+        </div>  <!-- Panel Body -->
+      </div>    <!-- Panel -->
+
+      &nbsp
+      {{ IF .PostSignup }}
+        <div class=alert alert-warning
+          <strong>The DNW Tennis Camp lottery has ended.</strong><br />Camps are now being filled on a space available basis. Please complete the signup form. Trish will contact you to advise whether space is available.
+        </div>
+      {{ END }}
+
+      {{ IF .PreSignup }}
+        <div class=alert alert-warning
+          <strong>The DNW Tennis Camp lottery opens " . $strt . ".</strong><br /> Please come back then to sign up for the lottery
+        </div>
+      {{ END }}
+
+      <p class="lead">Welcome to the {{ .Title }} lottery sign up page. Evan Hundley will be returning this year to offer three tennis camps. Should demand exceed available spots in the camps, DNW family members will be given priority over guests. Each camp is limited to 32 people. The (INSERT COST) camp fee will be billed to your DNW account on June 1st . <strong>No refunds for cancellations will be made after (INSERT REFUND DATE).</strong>
+      </p>
+
+      <p class="lead"> A lottery system will be used if more homeowners sign up for a particular camp than places available. <strong>Sign-ups received after (INSERT SIGNUP END DATE);  ?> will not be included in the initial drawing.</strong> Please make sure to indicate your first camp choice and a second choice. Entire families will be signed up before moving on to the next form. Following homeowners, guests will be added in the order that forms were drawn. A wait list for each camp will be created as needed. You will be notified of the results of the drawing on or around May 1st. If you have any difficulties with the online submission or have any questions, feel free to contact me by email or phone. 
+      </p>
+  <div class="row">
+    <div class="col-md-8">
+        <address>
+          <strong>Trish Keegan</strong><br>
+          &nbsp&nbsp&nbsp<a href="mailto:Trish@DNWTennis.com">Trish@DNWTennis.com</a><br>
+          &nbsp&nbsp&nbsp206.406.4709
+        </address>
+    </div>
+    <!--
+    <?php
+      //if ($cur_Time >= $cmp_SignupStart) {
+      //  echo("<div class='col-md-4'>");
+      //    echo("<br><p><a href='#/view2' class='btn btn-primary btn-lg' role='button'>Sign Up &raquo;</a></p>");
+      //  echo("</div>");
+      //}
+    //?>
+  -->
+
+  </div>
+
+
+<!--      </div>  -->
+
+    </div> <!-- /container -->
+
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="lib/bootstrap/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
