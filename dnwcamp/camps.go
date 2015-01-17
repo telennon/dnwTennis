@@ -26,20 +26,21 @@ type Section struct {
 
 type Camp struct {
 	ID 					bson.ObjectId	`bson:"_id,omitempty"`
+	Cid 				int64			"Cid"				// Defines a logical Camp
 	Title 				string			"Title"				// Generic name for camp
-	Active				bool 			"Active"			// True: Camp will show up in lists; False: Camp does not show up 
+	Active				bool 			"Active"			// Flips to no when camp is past signup dates
 	Cost				int64 			"Cost"				// Base cost of camp - Applies to all sections
-	RegStart			string			"RegStart"			// DateTime signup begins
-	RegEnd				string 			"RegEnd"			// DateTime signup ends
+	RegStart			string			"RegStart"			// DateTime signup can begin
+	RegEnd				string 			"RegEnd"			// DateTime signup can end
 	RefundDeadline 		string			"RefundDeadline"	// Last date to cancel and get a refund
-	CampOver			string			"CampOver"			// Date after which no registrations will be taken
-	CamperTypes			[]string 		"CamperTypes"		// Classes of campers - For DNW - Homeowner or Guest
+	BillingDate			string			"BillingDate"		// Date on which charge will be billed -- 1st time use in 2015
+	CampOver			string			"CampOver"			// Date after which the site should no longer allow registrations and flip to a see you next year page
+	CamperTypes			[]string 		"CamperTypes"		// Classes of campers - For DNW - Homeowner / Guest
 	Sections			[]Section 		"Sections"			// Array of sections for this camp
 }
-
 // NewCamp returns a new camp structure.
 func NewCamp() (*Camp) {
-	return &Camp{bson.NewObjectId(), "", false, 0.00, "", "", "", "", nil, nil}
+	return &Camp{bson.NewObjectId(), "", false, 0.00, "", "", "", "", "", nil, nil}
 }
 
 // AddSection adds a new camp section to this camp
@@ -123,4 +124,16 @@ func CreateCampIndex() error {
 	}
 
 	return err
+}
+
+func GetActiveCamp(cid string) (*Camp, error) {
+	// Setup Access to the database
+	sess, col, err := OpenCampCollection()
+	defer sess.Close()
+
+	var activeCamp Camp
+	// Find all the Camp Records
+	err = col.Find(bson.M{"Cid": cid, "Active": "true"}).One(&activeCamp)
+
+	return activeCamp, err
 }
